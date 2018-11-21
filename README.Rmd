@@ -30,12 +30,19 @@ df = df %>%
          compensation = sub("$", "", compensation, fixed = TRUE),
          compensation = sub(",", "", compensation, fixed = TRUE),
          compensation = as.numeric(compensation))
+createLink <- function(val) {
+  sprintf('<a href="%s" target="_blank" class="btn btn-primary">Link</a>',val)
+}
+df = df %>% 
+  mutate(Flyer =createLink(Flyer))
+
 ```
 
 
 ```{r dtable}
+
 library(DT)
-DT::datatable(df)
+DT::datatable(df, escape = FALSE)
 ```
 
 See https://hub.jhu.edu/announcements/students/research-participants-wanted/ for additional information about studies.
