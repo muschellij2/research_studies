@@ -44,7 +44,8 @@ df = df %>%
 ```{r dtable}
 
 library(DT)
-DT::datatable(df, escape = FALSE, width = "100%")
+DT::datatable(df, escape = FALSE, width = "100%",  options = list(
+  autoWidth = TRUE))
 ```
 
 See https://hub.jhu.edu/announcements/students/research-participants-wanted/ for additional information about studies.
