@@ -35,7 +35,8 @@ createLink <- function(val) {
 }
 df = df %>% 
   mutate(Flyer = createLink(Flyer)) %>% 
-  select(Flyer, everything())
+  select(Flyer, phone, phone2, email, email2, compensation,  compensated, sex, everything()) %>% 
+  select(-Name)
 
 ```
 
@@ -43,7 +44,7 @@ df = df %>%
 ```{r dtable}
 
 library(DT)
-DT::datatable(df, escape = FALSE)
+DT::datatable(df, escape = FALSE, width = "100%")
 ```
 
 See https://hub.jhu.edu/announcements/students/research-participants-wanted/ for additional information about studies.
