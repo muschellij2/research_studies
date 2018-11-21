@@ -1,5 +1,5 @@
 ---
-output: github_document
+output: html_document
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
@@ -36,3 +36,5 @@ df = df %>%
 library(DT)
 DT::datatable(df)
 ```
+
+See https://hub.jhu.edu/announcements/students/research-participants-wanted/ for additional information about studies.
