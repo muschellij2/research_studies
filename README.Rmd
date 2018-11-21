@@ -1,0 +1,38 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  echo = FALSE
+)
+```
+# Research Studies
+
+Here are a table of the flyers for research studiest at JHU:
+
+```{r reader, include= FALSE}
+library(googlesheets)
+library(dplyr)
+doc = gs_url("https://docs.google.com/spreadsheets/d/1uFuY9qw92BomzfplDDsh9stnEh1Zc-3AyRvuXZJd0VU/edit#gid=0") 
+data = doc %>% 
+  gs_read
+
+
+df = data
+df = df %>% 
+  mutate(compensation = trimws(compensation),
+         compensation = sub("$", "", compensation, fixed = TRUE),
+         compensation = sub(",", "", compensation, fixed = TRUE),
+         compensation = as.numeric(compensation))
+```
+
+
+```{r dtable}
+library(DT)
+DT::datatable(df)
+```
