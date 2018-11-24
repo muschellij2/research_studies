@@ -35,8 +35,8 @@ createLink <- function(val) {
 }
 df = df %>% 
   mutate(Flyer = createLink(Flyer)) %>% 
-  select(Flyer, phone, phone2, email, email2, compensation,  compensated, sex, everything()) %>% 
-  select(-Name)
+  select(Flyer, Name, compensation,  compensated, sex, phone, phone2, email, email2,  everything()) %>% 
+  arrange(desc(compensation)) 
 
 ```
 
