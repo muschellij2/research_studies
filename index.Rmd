@@ -16,7 +16,7 @@ knitr::opts_chunk$set(
 
 Here are a table of the flyers for research studiest at JHU:
 
-```{r reader, include= FALSE}
+```{r reader, include = FALSE}
 library(googlesheets)
 library(dplyr)
 doc = gs_url("https://docs.google.com/spreadsheets/d/1uFuY9qw92BomzfplDDsh9stnEh1Zc-3AyRvuXZJd0VU/edit#gid=0") 
