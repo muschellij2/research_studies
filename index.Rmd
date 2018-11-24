@@ -45,7 +45,9 @@ df = df %>%
 
 library(DT)
 DT::datatable(df, escape = FALSE, width = "100%",  options = list(
-  autoWidth = TRUE))
+  autoWidth = TRUE,
+  paging = FALSE,
+  pageLength = 30))
 ```
 
 See https://hub.jhu.edu/announcements/students/research-participants-wanted/ for additional information about studies.
