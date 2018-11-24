@@ -14,6 +14,9 @@ knitr::opts_chunk$set(
 
 # Research Studies
 
+See https://hub.jhu.edu/announcements/students/research-participants-wanted/ for additional information about studies.
+
+
 Here are a table of the flyers for research studiest at JHU:
 
 ```{r reader, include = FALSE}
@@ -50,4 +53,3 @@ DT::datatable(df, escape = FALSE, width = "100%",  options = list(
   pageLength = 30))
 ```
 
-See https://hub.jhu.edu/announcements/students/research-participants-wanted/ for additional information about studies.
