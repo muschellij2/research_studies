@@ -13,9 +13,10 @@ get_link_info = function(url) {
   divs = res %>%
     html_nodes(css)
   info = divs %>% html_text() %>%
-    paste(collapse = " ")
+    paste(collapse = ";;")
   return(info)
 }
+
 
 pages = 1:20
 res = lapply(df$link, get_link_info)
@@ -25,3 +26,6 @@ info = unlist(res)
 df$info = info
 readr::write_rds(df, path = "page_links_with_info.rds", compress = "xz")
 
+df = df %>%
+  mutate(info = gsub(";;", "\n", info))
+readr::write_rds(df, path = "page_links_with_info_newlines.rds", compress = "xz")

@@ -55,11 +55,16 @@ DT::datatable(df, escape = FALSE, width = "100%",  options = list(
 See https://hub.jhu.edu/announcements/students/research-participants-wanted/ for additional information about studies.  Here is the table we have compiled from that data:
 
 ```{r dtable_jhu}
-page_df = readr::read_rds("page_links_with_info.rds")
-page_df = page_df %>% 
+page_df = readr::read_rds("page_links_with_info_newlines.rds")
+page_df = page_df %>%
+  mutate(info = gsub("•", "\n•", info)) %>% 
   select(-page) %>% 
   mutate(link = createLink(link)) %>% 
   select(link, title, summary, everything())
+page_df = page_df %>% 
+  mutate(
+    info = gsub(pattern = "\n\n", replacement = "\n", x = info),
+    info = gsub(pattern = "\n", replacement = "<br/>", x = info))
 DT::datatable(page_df, escape = FALSE, width = "100%",  options = list(
   autoWidth = TRUE,
   paging = TRUE,
