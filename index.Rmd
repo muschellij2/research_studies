@@ -14,10 +14,7 @@ knitr::opts_chunk$set(
 
 # Research Studies
 
-See https://hub.jhu.edu/announcements/students/research-participants-wanted/ for additional information about studies.
-
-
-Here are a table of the flyers for research studiest at JHU:
+Here are a table of the flyers for research studies at JHU:
 
 ```{r reader, include = FALSE}
 library(googlesheets)
@@ -53,3 +50,18 @@ DT::datatable(df, escape = FALSE, width = "100%",  options = list(
   pageLength = 30))
 ```
 
+# Tables from the Hub
+
+See https://hub.jhu.edu/announcements/students/research-participants-wanted/ for additional information about studies.  Here is the table we have compiled from that data:
+
+```{r dtable_jhu}
+page_df = readr::read_rds("page_links_with_info.rds")
+page_df = page_df %>% 
+  select(-page) %>% 
+  mutate(link = createLink(link)) %>% 
+  select(link, title, summary, everything())
+DT::datatable(page_df, escape = FALSE, width = "100%",  options = list(
+  autoWidth = TRUE,
+  paging = TRUE,
+  pageLength = 30))
+```
