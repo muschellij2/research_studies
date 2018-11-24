@@ -61,6 +61,21 @@ page_df = page_df %>%
   select(-page) %>% 
   mutate(link = createLink(link)) %>% 
   select(link, title, summary, everything())
+comp = sub(".*(\\$.*)( |[.]|\n)(.*)", "\\1", page_df$info)
+comp = strsplit(comp, split = " ")
+comp = sapply(comp, dplyr::first)
+comp = strsplit(comp, split = "[.]")
+comp = sapply(comp, dplyr::first)
+comp = strsplit(comp, split = "\n")
+comp = sapply(comp, dplyr::first)
+comp[!grepl("$", comp, fixed = TRUE)] = NA
+comp = sub(",", "", comp)
+comp = sub("$", "", comp, fixed = TRUE)
+page_df$compensation = comp
+page_df = page_df %>% 
+  mutate(num_comp = sub("/.*", "", compensation),
+         num_comp = as.numeric(num_comp)) %>% 
+  arrange(desc(num_comp))
 page_df = page_df %>% 
   mutate(
     info = gsub(pattern = "\n\n", replacement = "\n", x = info),
@@ -68,5 +83,5 @@ page_df = page_df %>%
 DT::datatable(page_df, escape = FALSE, width = "100%",  options = list(
   autoWidth = TRUE,
   paging = TRUE,
-  pageLength = 30))
+  pageLength = 50))
 ```
